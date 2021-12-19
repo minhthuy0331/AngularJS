@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Nested - Repeat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    
+</head>
+<body ng-app="myApp">
+    <script>
+        var myApp = angular.module("myApp", []);
+        myApp.controller("nested-repeat", function($scope){
+            var countries = [
+                {
+                    name: "UK",
+                    cities: [
+                        { name: "London" },
+                        { name: "Birmingham" },
+                        { name: "Manchester" },
+                    ]
+                },
+                {
+                    name: "USA",
+                    cities: [
+                        { name: "Los Angeles" },
+                        { name: "Chicago" },
+                        { name: "Houston" },
+                    ]
+                },
+                {
+                    name: "India",
+                    cities: [
+                        { name: "Hyderabad" },
+                        { name: "Chennai" },
+                        { name: "Mumbai" },
+                    ]
+                },
+
+            ]
+            $scope.countries = countries;
+        })
+
+    </script>
+    <div  ng-controller="nested-repeat">
+        <ul>
+            <li ng-repeat="country in countries">
+                {{country.name}} - Index {{$index}}
+                <ul>
+                    <li ng-repeat="city in country.cities">
+                        {{city.name}} 
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

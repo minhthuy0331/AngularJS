@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DEMO">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body >
+    <script>
+        var myApp = angular.module("DEMO", [])
+        .controller("myController", function($scope){  // viết tắt cảu myApp.controller....
+
+        }).directive("welcomeText", function(){  // viết tắt của myApp.directive....
+            var html = "<h1>Welcome to TEDU directive</h1>"
+            return {
+                template: html
+            }
+        });
+    </script>
+
+    <div ng-controller="myController" ng-init = "DemoMessage='welcome to TEDU'">
+       <div welcome-text></div> <!--phải sử dụng dấu gạch ngang giữa 2 chữ welcome và text-->
+    </div>
+    
+</body>
+</html>

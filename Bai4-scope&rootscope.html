@@ -1,0 +1,39 @@
+<!-- 
+    $scope là một đối tượng có nhiệm vụ giao tiếp dữ liệu giữa controller và view
+
+    Bản chất hiểu Angular Js bao gồm:(MCV)
+    1. Model: là dữ liệu ứng dụng trên view
+    2. View: là lớp code HTML
+    3. Controller: là các hàm javascript có khả năng tạo/thay đổi/ xóa/ điều khiển dữ liệu
+
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <title>Document</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ </head>
+ <body ng-app="scopeDemo">
+     <script>
+         var myApp = angular.module("scopeDemo", []);
+
+         myApp.controller("myController", myController);  /* viết tắt 2 dòng 21 và 23: myApp.Controller("myController", function($scope) )*/
+
+         function myController($scope) {
+            $scope.name = "TEDU";
+
+            $scope.sayHello = function(){
+              $scope.name = "Hello" + $scope.name;  
+            }
+         };
+     </script>
+     <div ng-contraller="myController">
+         <input type="text" ng-model="name">
+         <button ng-click="sayHello()">Click</button>
+          <div>{{name}}</div>
+     </div>
+     
+ </body>
+ </html>

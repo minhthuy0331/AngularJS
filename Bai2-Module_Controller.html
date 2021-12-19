@@ -1,0 +1,44 @@
+<!-- Cách 1:
+   create the module 
+var myApp = angular.module("myModule", [] );
+
+   create the controller 
+var myController = function ($scope) {
+    $scope.message = "Angular JS Tutorial" 
+}
+   register the controller with the module (thêm vào module để sử dụng cả controller)
+myApp.controller ("myController", myController);
+
+Cách 2:
+   create the module 
+var myApp = angular.module("myModule", [] );
+
+   creating the controller and registering (viết tắt)
+myApp.controller ("myController", function($scope) {
+   $scope.message = "Angular JS Tutorial"
+}) -->
+<!DOCTYPE html>
+<html lang="en" ng-app = "myModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body>
+    <script>
+      //  create a module
+      var myApp = angular.module("myModule", []);
+         myApp.controller("myController", myController);
+      
+      function myController($scope) {  // scope là cầu nối giữa controller và view
+         $scope.message = "Angular JS Application";
+      }
+
+    </script>
+    <div ng-controller="myController">
+      {{message}}
+    </div>
+    
+</body>
+</html>

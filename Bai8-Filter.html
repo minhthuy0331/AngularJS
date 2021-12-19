@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo - Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body ng-app="DemoFilter">
+    <script>
+        
+        var myApp = angular.module("DemoFilter", []);
+
+        myApp.controller("filterController", filterController);
+
+        filterController.$inject = ["$scope"];
+
+        function filterController($scope) {
+            var employees = [
+                { name: "Xiao", birthDate:  new Date("12/3/2000"), salary: 1200, gender: "Male", status: true},
+                { name: "Amber", birthDate: new Date("12/4/1994"), salary: 5500, gender: "Female",status: false},
+                { name: "Vahei", birthDate: new Date("12/5/1999"), salary: 6500, gender: "Male",status: true},
+                { name: "Nata", birthDate:  new Date("16/3/1998"), salary: 8900, gender: "Female",status: false},
+                { name: "Krixi", birthDate: new Date("12/3/1991"), salary: 6500, gender: "Female",status: true},
+                { name: "Joker", birthDate: new Date("12/3/1996"), salary: 9000, gender: "Male",status: false},
+            ];
+            $scope.employees = employees;
+        }  // khi không dùng cách viết tắc của hàm thì ko cần dấu ;
+
+        // tự định nghĩa hàm
+        myApp.filter("status", function(){
+            return function (input) {
+                if (input == true)
+                    return "Kích hoạt";
+                else 
+                    return "Khóa";
+            }
+        }); //khi viết tắt hàm thì có dấu ;
+       
+
+    </script>
+    <div ng-controller="filterController">
+        <table border="1">
+            <tr>
+                <td>Name</td>
+                <td>Date of Birth</td>
+                <td>Salary</td>
+                <td>Gender</td>
+                <td>Status</td>
+            </tr>
+            <tr ng-repeat="employee in employees | limitTo:6:0" > <!--limitTo là chọn phần tử đc hiện ra:-->
+                <td>{{employee.name | uppercase}}</td>
+                <td>{{employee.birthDate | date: "dd/MM/yyyy" }}</td>
+                <td>{{employee.salary | currency: "$"}}</td>
+                <td>{{employee.gender | lowercase}}</td>
+                <td>{{employee.status | status}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
